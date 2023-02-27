@@ -35,8 +35,6 @@ st = c.get_waveforms(network='IU', station = 'TATO', location = '00',
 tr = st[0];
 tr.filter('bandpass', freqmin = 0.8, freqmax = 3.5)
 
-# tr.plot(fig = fig, type='dayplot',vertical_scaling_range = 0.02*max(abs(tr.data)))
-
 # Get station coordinates
 coords = inv.get_coordinates('IU.TATO..BHE')
 
@@ -61,9 +59,9 @@ first_arrival = origin.time + arrivals[0].time   #arrivals sorted by time
 print(first_arrival)
 
 # Window around first arrival
-st2 = st.slice(first_arrival - 60, first_arrival + 300)
+tr2 = tr.slice(first_arrival - 60, first_arrival + 300)
 fig = plt.figure()
-st2.plot(fig = fig)
+tr2.plot(fig = fig)
 
 plt.figure(fig)
 plt.savefig('P_Window_TATO_Tohoku.png', dpi = 300)
